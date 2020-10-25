@@ -8,10 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import {Create} from './components/create';
+import {Read} from './components/read';
 
 
 class App extends React.Component {
 
+  //Navbar for the home page and to display different componets on the one page
   render() {
     return (
       <BrowserRouter>
@@ -24,9 +27,9 @@ class App extends React.Component {
             </Nav>
           </Navbar>
           <Switch>
-            <Route exact path="/" component={Header} />
-            <Route path="/create" component={Footer} />
-            <Route path="/read" component={Content} />
+            <Route exact path="/" component={Header} exact />
+            <Route path="/create" component={Create} exact />
+            <Route path="/read" component={Read} exact/>
           </Switch>
         </div>
       </BrowserRouter>
