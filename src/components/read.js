@@ -1,37 +1,32 @@
 import React from 'react';
 import { Movies } from './movies'; //Imports component movies
+import axios from 'axios';
 
 export class Read extends React.Component {
 
-    //Variable
-    state = {
+  //Variable for novie information
+  state = {
 
-      //Array for API
-       movies: [
-            {
-                "Title": "Captain America: Civil War",
-                "Year": "2016",
-                "imdbID": "tt3498820",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZtgwNzY1MTUwNTM@._V1_SC300.jpg"         
-            },
+    //Array for API
+    movies: []
 
-            {
-                "Title": "Charlie Wilson's War", "Year": "2007",
-                "imdbID": "tt0472062",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYw0TU3MD4._V1_SX300.jpg"
-            },
-            
-            {
-                "Title": "Avengers: Infinity War", "Year": "2018",
-                "imdbID": "tt4154756",
-                "Type": "movie",
-                "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-            }
+  };
+// Gets information from the array
+  componentDidMount() {
+    axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+      .then(response => {
+        this.setState(
+          {
+            movies: response.data.Search
+          }
+        )
+      })
 
-            ]
-    };
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 
   render() {
@@ -39,7 +34,7 @@ export class Read extends React.Component {
       <div >
         <h1>This is the readcomponent</h1>
         {/* Variable movies stores the information from the API */}
-        <Movies movies={this.state.movies}></Movies> 
+        <Movies movies={this.state.movies}></Movies>
       </div>
     );
   }
